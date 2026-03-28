@@ -17,6 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lilescapecoffee.com"),
   title: "Lil' Escape Coffee & Eatery | Coffee Shop Terbaik di Sragen",
   description:
     "Lil' Escape Coffee & Eatery - Tempat nongkrong nyaman, kopi spesialti berkualitas, dan menu eatery terbaik di Sragen. Nikmati suasana cozy, WiFi cepat, dan harga terjangkau. Cocok untuk kerja, nongkrong, dan keluarga.",
@@ -69,10 +70,23 @@ export const metadata: Metadata = {
   authors: [{ name: "Lil' Escape Coffee & Eatery" }],
   creator: "Lil' Escape Coffee & Eatery",
   publisher: "Lil' Escape Coffee & Eatery",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Lil' Escape Coffee & Eatery",
+  },
+  verification: {
+    google: "isi_dengan_kode_google_search_console_nanti",
+  },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://lilescape.com",
+    url: "https://lilescapecoffee.com",
     siteName: "Lil' Escape Coffee & Eatery",
     title: "Lil' Escape Coffee & Eatery | Coffee Shop Terbaik di Sragen",
     description:
@@ -105,7 +119,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://lilescape.com",
+    canonical: "https://lilescapecoffee.com",
   },
   category: "restaurant",
 };
@@ -117,7 +131,7 @@ const jsonLd = {
   alternateName: "Lil Escape Coffee & Eatery",
   description:
     "Tempat nongkrong nyaman dengan kopi spesialti berkualitas dan menu eatery terbaik di Sragen, Jawa Tengah.",
-  url: "https://lilescape.com",
+  url: "https://lilescapecoffee.com",
   telephone: "+628886927860",
   image: "/images/hero-bg.jpg",
   address: {
