@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --accent: #093526;
+  --accent-light: #0d4a35;
+  --accent-dark: #062419;
+  --cream: #fdfdfd;
+  --warm: #f5f0eb;
+  --warm-dark: #e8ddd3;
+  --gold: #c8a96e;
+  --gold-light: #d4ba84;
+  --text-dark: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-light: #9a9a9a;
+  --background: #fdfdfd;
+  --foreground: #1a1a1a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+  --color-cream: var(--cream);
+  --color-warm: var(--warm);
+  --color-warm-dark: var(--warm-dark);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-text-dark: var(--text-dark);
+  --color-text-muted: var(--text-muted);
+  --color-text-light: var(--text-light);
+  --font-sans: var(--font-poppins);
+  --font-serif: var(--font-playfair);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-poppins), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Swiper custom styles */
+.swiper-pagination-bullet {
+  background: var(--accent) !important;
+  opacity: 0.3;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--warm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(9, 53, 38, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(9, 53, 38, 0.6); }
+}
+
+/* Marquee Animation for Testimonial */
+@keyframes continuous-marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: continuous-marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
