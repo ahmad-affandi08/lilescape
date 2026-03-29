@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     title: "Lil' Escape Coffee & Eatery",
   },
   verification: {
-    google: "isi_dengan_kode_google_search_console_nanti",
+    google: "google6ce4bbd9c738ebfe.html",
   },
   openGraph: {
     type: "website",
