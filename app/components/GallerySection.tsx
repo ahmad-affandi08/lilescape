@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const galleryImages = [
@@ -38,8 +37,6 @@ const galleryImages = [
 ];
 
 export default function GallerySection() {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-
   return (
     <section id="galeri" className="py-20 md:py-32 bg-background relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,6 +92,7 @@ export default function GallerySection() {
                 alt={img.alt}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
+                quality={75}
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
 

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -11,9 +13,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <a href="#beranda" className="inline-block mb-4">
-              <img
+              <Image
                 src="/assets/logo/logo.png"
                 alt="Lil' Escape Logo"
+                width={196}
+                height={56}
                 className="h-14 w-auto object-contain"
               />
             </a>
@@ -80,6 +84,9 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#lokasi" className="hover:text-accent-light transition-colors">Lokasi</a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-accent-light transition-colors">FAQ</a>
               </li>
             </ul>
           </div>

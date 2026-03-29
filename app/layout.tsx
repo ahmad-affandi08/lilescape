@@ -124,16 +124,22 @@ export const metadata: Metadata = {
   category: "restaurant",
 };
 
-const jsonLd = {
+const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "CafeOrCoffeeShop",
+  "@id": "https://lilescapecoffee.com/#organization",
   name: "Lil' Escape Coffee & Eatery",
   alternateName: "Lil Escape Coffee & Eatery",
   description:
     "Tempat nongkrong nyaman dengan kopi spesialti berkualitas dan menu eatery terbaik di Sragen, Jawa Tengah.",
   url: "https://lilescapecoffee.com",
   telephone: "+628886927860",
-  image: "/images/hero-bg.jpg",
+  image: "https://lilescapecoffee.com/images/hero-bg.jpg",
+  hasMap: "https://maps.google.com/?cid=9187963753256058111",
+  areaServed: {
+    "@type": "City",
+    name: "Sragen",
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "Sragen",
@@ -198,6 +204,50 @@ const jsonLd = {
   },
 };
 
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": "https://lilescapecoffee.com/#faq",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Lil' Escape Coffee & Eatery buka jam berapa?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Kami buka setiap hari pukul 09.00 - 23.00 WIB. Jam operasional bisa berubah pada hari libur tertentu.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Apakah Lil' Escape cocok untuk kerja atau meeting?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ya. Tempat kami nyaman untuk kerja, meeting santai, dan nongkrong dengan dukungan WiFi yang stabil.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Apa menu favorit di Lil' Escape Coffee & Eatery?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Beberapa menu favorit pelanggan adalah Signature Latte, Es Kopi Susu Gula Aren, Chicken Rice Bowl, dan Pasta Carbonara.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Bagaimana cara reservasi atau tanya ketersediaan tempat?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Kamu bisa langsung hubungi kami melalui WhatsApp di 08886927860 untuk reservasi dan informasi terbaru.",
+      },
+    },
+  ],
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [localBusinessSchema, faqSchema],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -213,7 +263,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <meta name="geo.region" content="ID-JI" />
+        <meta name="geo.region" content="ID-JT" />
         <meta name="geo.placename" content="Sragen" />
         <meta name="geo.position" content="-7.4062983;111.10623" />
         <meta name="ICBM" content="-7.4062983, 111.10623" />

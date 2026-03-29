@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#beranda", label: "Beranda" },
@@ -10,6 +11,7 @@ const navLinks = [
   { href: "#galeri", label: "Galeri" },
   { href: "#testimoni", label: "Testimoni" },
   { href: "#lokasi", label: "Lokasi" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -17,8 +19,13 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      const nextScrolled = window.scrollY > 50;
+      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -38,10 +45,12 @@ export default function Navbar() {
           href="#beranda"
           className="flex items-center"
         >
-          <img
+          <Image
             src={scrolled ? "/assets/logo/logo.png" : "/assets/logo/logo2.png"}
             alt="Lil' Escape Logo"
-            className="h-10 w-auto object-contain transition-all duration-300"
+            width={140}
+            height={40}
+            className="w-auto h-auto max-h-10 object-contain transition-all duration-300"
           />
         </a>
 
