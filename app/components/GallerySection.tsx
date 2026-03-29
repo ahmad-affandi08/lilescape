@@ -95,6 +95,7 @@ export default function GallerySection() {
                 alt={img.alt}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 50vw, 33vw"
               />
 
               {/* Instagram overlay on hover (Optional, for desktop) */}

@@ -38,6 +38,7 @@ export default function HeroSection() {
                   className="object-cover"
                   priority={index === 0}
                   quality={90}
+                  sizes="100vw"
                 />
               </div>
             </SwiperSlide>

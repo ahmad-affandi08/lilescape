@@ -70,6 +70,7 @@ export default function AboutSection() {
                 alt="Barista Lil' Escape Coffee sedang menyeduh kopi spesialti"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             {/* Floating card */}
