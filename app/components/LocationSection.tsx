@@ -100,11 +100,7 @@ export default function LocationSection() {
                   <h3 className="font-semibold text-accent-light mb-1">Jam Operasional</h3>
                   <div className="text-text-muted text-sm space-y-1">
                     <div className="flex justify-between gap-8">
-                      <span>Senin - Jumat</span>
-                      <span className="font-medium text-accent-light">10:00 - 22:00</span>
-                    </div>
-                    <div className="flex justify-between gap-8">
-                      <span>Sabtu - Minggu</span>
+                      <span>Senin - Minggu</span>
                       <span className="font-medium text-accent-light">09:00 - 23:00</span>
                     </div>
                   </div>
