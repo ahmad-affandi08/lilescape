@@ -73,6 +73,45 @@ const fallbackMenuItems: PublicMenuItem[] = [
   },
 ];
 
+const defaultMenuImageBaseUrl = "https://apps.lilescapecoffee.com";
+
+const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
+  if (typeof rawUrl !== "string") {
+    return null;
+  }
+
+  const trimmed = rawUrl.trim();
+  if (trimmed.length === 0) {
+    return null;
+  }
+
+  const menuImageBaseUrl =
+    process.env.LILESCAPE_MENU_IMAGE_BASE_URL ?? defaultMenuImageBaseUrl;
+
+  // Some upstream payloads still return localhost URLs, which break in production.
+  if (trimmed.startsWith("/")) {
+    try {
+      return new URL(trimmed, menuImageBaseUrl).toString();
+    } catch {
+      return null;
+    }
+  }
+
+  try {
+    const parsed = new URL(trimmed);
+    const isLocalHost =
+      parsed.hostname === "localhost" || parsed.hostname === "127.0.0.1";
+
+    if (isLocalHost) {
+      return new URL(`${parsed.pathname}${parsed.search}`, menuImageBaseUrl).toString();
+    }
+
+    return parsed.toString();
+  } catch {
+    return null;
+  }
+};
+
 const formatSafeMenuItem = (item: unknown): PublicMenuItem | null => {
   if (!item || typeof item !== "object") {
     return null;
@@ -97,8 +136,7 @@ const formatSafeMenuItem = (item: unknown): PublicMenuItem | null => {
     kategori: candidate.kategori,
     kategori_urutan:
       typeof candidate.kategori_urutan === "number" ? candidate.kategori_urutan : 0,
-    gambar_url:
-      typeof candidate.gambar_url === "string" ? candidate.gambar_url : null,
+    gambar_url: normalizeMenuImageUrl(candidate.gambar_url),
   };
 };
 
