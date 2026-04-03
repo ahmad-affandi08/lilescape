@@ -83,8 +83,7 @@ const resolveAssetBaseUrl = (): URL | null => {
   }
 };
 
-const isLocalAssetHost = (hostname: string): boolean =>
-  hostname === "127.0.0.1" || hostname === "localhost";
+const isStoragePath = (pathname: string): boolean => pathname.startsWith("/storage/");
 
 const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
   if (typeof rawUrl !== "string") {
@@ -101,7 +100,15 @@ const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
   try {
     const parsed = new URL(trimmed);
 
-    if (isLocalAssetHost(parsed.hostname) && assetBase) {
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      return null;
+    }
+
+    if (!isStoragePath(parsed.pathname)) {
+      return null;
+    }
+
+    if (assetBase) {
       const rewritten = new URL(parsed.pathname + parsed.search, assetBase);
       return rewritten.toString();
     }
@@ -112,8 +119,13 @@ const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
       return null;
     }
 
+    const normalizedPath = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+    if (!isStoragePath(normalizedPath)) {
+      return null;
+    }
+
     try {
-      const rewritten = new URL(trimmed, assetBase);
+      const rewritten = new URL(normalizedPath, assetBase);
       return rewritten.toString();
     } catch {
       return null;
