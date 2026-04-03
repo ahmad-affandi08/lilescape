@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -14,12 +13,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/#beranda" className="inline-block mb-4">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/assets/logo/logo.png"
                 alt="Lil' Escape Logo"
                 width={196}
                 height={56}
-                unoptimized
                 className="h-14 w-auto object-contain"
               />
             </Link>

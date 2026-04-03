@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 
 const navLinks = [
   { href: "/#beranda", label: "Beranda" },
@@ -46,12 +45,12 @@ export default function Navbar() {
           href="/#beranda"
           className="flex items-center"
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={scrolled ? "/assets/logo/logo.png" : "/assets/logo/logo2.png"}
             alt="Lil' Escape Logo"
             width={140}
             height={40}
-            unoptimized
             className="w-auto h-auto max-h-10 object-contain transition-all duration-300"
           />
         </a>
