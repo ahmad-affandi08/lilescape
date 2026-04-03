@@ -5,13 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const navLinks = [
-  { href: "#beranda", label: "Beranda" },
-  { href: "#tentang", label: "Tentang" },
-  { href: "#menu", label: "Menu" },
-  { href: "#galeri", label: "Galeri" },
-  { href: "#testimoni", label: "Testimoni" },
-  { href: "#lokasi", label: "Lokasi" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#beranda", label: "Beranda" },
+  { href: "/#tentang", label: "Tentang" },
+  { href: "/#menu", label: "Menu" },
+  { href: "/#galeri", label: "Galeri" },
+  { href: "/#testimoni", label: "Testimoni" },
+  { href: "/#lokasi", label: "Lokasi" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/recruitment", label: "Recruitment" },
 ];
 
 export default function Navbar() {
@@ -42,7 +43,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
         <a
-          href="#beranda"
+          href="/#beranda"
           className="flex items-center"
         >
           <Image

@@ -1,4 +1,5 @@
 import "server-only";
+import { buildApiUrl } from "./api";
 
 export type PublicMenuItem = {
   id: number;
@@ -73,8 +74,6 @@ const fallbackMenuItems: PublicMenuItem[] = [
   },
 ];
 
-const defaultMenuImageBaseUrl = "https://apps.lilescapecoffee.com";
-
 const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
   if (typeof rawUrl !== "string") {
     return null;
@@ -85,28 +84,8 @@ const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
     return null;
   }
 
-  const menuImageBaseUrl =
-    process.env.LILESCAPE_MENU_IMAGE_BASE_URL ?? defaultMenuImageBaseUrl;
-
-  // Some upstream payloads still return localhost URLs, which break in production.
-  if (trimmed.startsWith("/")) {
-    try {
-      return new URL(trimmed, menuImageBaseUrl).toString();
-    } catch {
-      return null;
-    }
-  }
-
   try {
-    const parsed = new URL(trimmed);
-    const isLocalHost =
-      parsed.hostname === "localhost" || parsed.hostname === "127.0.0.1";
-
-    if (isLocalHost) {
-      return new URL(`${parsed.pathname}${parsed.search}`, menuImageBaseUrl).toString();
-    }
-
-    return parsed.toString();
+    return new URL(trimmed).toString();
   } catch {
     return null;
   }
@@ -141,18 +120,13 @@ const formatSafeMenuItem = (item: unknown): PublicMenuItem | null => {
 };
 
 export async function getPublicMenuItems(): Promise<PublicMenuItem[]> {
-  const baseUrl = process.env.LILESCAPE_MENU_SOURCE_URL;
-  const timeoutMs = Number(process.env.LILESCAPE_MENU_FETCH_TIMEOUT_MS ?? "7000");
-
-  if (!baseUrl) {
-    return fallbackMenuItems;
-  }
+  const timeoutMs = 7000;
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const response = await fetch(baseUrl, {
+    const response = await fetch(buildApiUrl("/public/menu"), {
       method: "GET",
       next: { revalidate: 300 },
       signal: controller.signal,
