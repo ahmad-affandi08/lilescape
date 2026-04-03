@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/#beranda", label: "Beranda" },
@@ -46,8 +47,7 @@ export default function Navbar() {
           href="/#beranda"
           className="flex items-center"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={scrolled ? "/images/logo.png" : "/images/logo2.png"}
             alt="Lil' Escape Logo"
             width={140}

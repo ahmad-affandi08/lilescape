@@ -199,7 +199,6 @@ export default async function MenuPage() {
                             src={getMenuImageSrc(item.gambar_url)}
                             alt={`${item.nama} - Menu Lil' Escape Coffee & Eatery`}
                             fill
-                            unoptimized
                             className="z-10 object-contain p-3 drop-shadow-[0_10px_10px_rgba(0,0,0,0.24)] transition-transform duration-500 group-hover:scale-105"
                             sizes="(max-width: 640px) 40vw, (max-width: 1280px) 25vw, 20vw"
                             quality={75}
