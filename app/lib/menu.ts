@@ -85,6 +85,11 @@ const resolveAssetBaseUrl = (): URL | null => {
 
 const isStoragePath = (pathname: string): boolean => pathname.startsWith("/storage/");
 
+const extractStoragePath = (value: string): string | null => {
+  const match = value.match(/\/storage\/[^\s?#]+(?:\?[^\s#]*)?/i);
+  return match ? match[0] : null;
+};
+
 const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
   if (typeof rawUrl !== "string") {
     return null;
@@ -94,6 +99,8 @@ const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
   if (trimmed.length === 0) {
     return null;
   }
+
+  const recoveredStoragePath = extractStoragePath(trimmed);
 
   const assetBase = resolveAssetBaseUrl();
 
@@ -105,6 +112,10 @@ const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
     }
 
     if (!isStoragePath(parsed.pathname)) {
+      if (recoveredStoragePath && assetBase) {
+        return new URL(recoveredStoragePath, assetBase).toString();
+      }
+
       return null;
     }
 
@@ -119,7 +130,7 @@ const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
       return null;
     }
 
-    const normalizedPath = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+    const normalizedPath = recoveredStoragePath ?? (trimmed.startsWith("/") ? trimmed : `/${trimmed}`);
     if (!isStoragePath(normalizedPath)) {
       return null;
     }
