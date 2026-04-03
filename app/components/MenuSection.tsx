@@ -154,6 +154,7 @@ export default function MenuSection({ items }: MenuSectionProps) {
                     src={getMenuImageSrc(item)}
                     alt={`${item.nama} - Menu Lil' Escape Coffee & Eatery Sragen`}
                     fill
+                    unoptimized
                     className="z-10 object-contain p-3 drop-shadow-[0_12px_10px_rgba(0,0,0,0.3)] group-hover:scale-105 transition-transform duration-500"
                     quality={75}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

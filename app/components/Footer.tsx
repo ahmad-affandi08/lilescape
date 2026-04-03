@@ -19,6 +19,7 @@ export default function Footer() {
                 alt="Lil' Escape Logo"
                 width={196}
                 height={56}
+                unoptimized
                 className="h-14 w-auto object-contain"
               />
             </Link>

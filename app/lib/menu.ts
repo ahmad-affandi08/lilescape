@@ -1,5 +1,5 @@
 import "server-only";
-import { buildApiUrl } from "./api";
+import { buildApiUrl, getApiBaseUrl } from "./api";
 
 export type PublicMenuItem = {
   id: number;
@@ -74,6 +74,18 @@ const fallbackMenuItems: PublicMenuItem[] = [
   },
 ];
 
+const resolveAssetBaseUrl = (): URL | null => {
+  try {
+    const apiBase = new URL(getApiBaseUrl());
+    return new URL("/", apiBase.origin);
+  } catch {
+    return null;
+  }
+};
+
+const isLocalAssetHost = (hostname: string): boolean =>
+  hostname === "127.0.0.1" || hostname === "localhost";
+
 const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
   if (typeof rawUrl !== "string") {
     return null;
@@ -84,10 +96,28 @@ const normalizeMenuImageUrl = (rawUrl: unknown): string | null => {
     return null;
   }
 
+  const assetBase = resolveAssetBaseUrl();
+
   try {
-    return new URL(trimmed).toString();
+    const parsed = new URL(trimmed);
+
+    if (isLocalAssetHost(parsed.hostname) && assetBase) {
+      const rewritten = new URL(parsed.pathname + parsed.search, assetBase);
+      return rewritten.toString();
+    }
+
+    return parsed.toString();
   } catch {
-    return null;
+    if (!assetBase) {
+      return null;
+    }
+
+    try {
+      const rewritten = new URL(trimmed, assetBase);
+      return rewritten.toString();
+    } catch {
+      return null;
+    }
   }
 };
 

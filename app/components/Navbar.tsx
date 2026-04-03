@@ -51,6 +51,7 @@ export default function Navbar() {
             alt="Lil' Escape Logo"
             width={140}
             height={40}
+            unoptimized
             className="w-auto h-auto max-h-10 object-contain transition-all duration-300"
           />
         </a>
