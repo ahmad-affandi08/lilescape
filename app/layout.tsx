@@ -175,27 +175,25 @@ const localBusinessSchema = {
     "https://www.instagram.com/lilescapecoffee/",
     "https://maps.google.com/?cid=9187963753256058111",
   ],
-  hasMenu: {
-    "@type": "Menu",
-    hasMenuSection: [
-      {
-        "@type": "MenuSection",
-        name: "Kopi",
-        hasMenuItem: [
-          { "@type": "MenuItem", name: "Signature Latte" },
-          { "@type": "MenuItem", name: "Es Kopi Susu Gula Aren" },
-        ],
-      },
-      {
-        "@type": "MenuSection",
-        name: "Makanan",
-        hasMenuItem: [
-          { "@type": "MenuItem", name: "Chicken Rice Bowl" },
-          { "@type": "MenuItem", name: "Pasta Carbonara" },
-        ],
-      },
-    ],
-  },
+  hasMenu: "https://lilescapecoffee.com/menu",
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: { "@type": "MenuItem", name: "Signature Latte" },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: { "@type": "MenuItem", name: "Es Kopi Susu Gula Aren" },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: { "@type": "MenuItem", name: "Chicken Rice Bowl" },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: { "@type": "MenuItem", name: "Pasta Carbonara" },
+    },
+  ],
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
@@ -243,9 +241,43 @@ const faqSchema = {
   ],
 };
 
+const websiteSchema = {
+  "@type": "WebSite",
+  "@id": "https://lilescapecoffee.com/#website",
+  url: "https://lilescapecoffee.com",
+  name: "Lil' Escape Coffee & Eatery",
+  inLanguage: "id-ID",
+};
+
+const siteNavigationSchema = {
+  "@type": "ItemList",
+  "@id": "https://lilescapecoffee.com/#site-navigation",
+  name: "Navigasi Utama",
+  itemListElement: [
+    {
+      "@type": "SiteNavigationElement",
+      position: 1,
+      name: "Beranda",
+      url: "https://lilescapecoffee.com/",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      position: 2,
+      name: "Menu",
+      url: "https://lilescapecoffee.com/menu",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      position: 3,
+      name: "Recruitment",
+      url: "https://lilescapecoffee.com/recruitment",
+    },
+  ],
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [localBusinessSchema, faqSchema],
+  "@graph": [localBusinessSchema, faqSchema, websiteSchema, siteNavigationSchema],
 };
 
 export default function RootLayout({

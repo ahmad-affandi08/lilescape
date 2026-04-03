@@ -17,5 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${siteUrl}/images/hero-bg2.jpg`,
       ],
     },
+    {
+      url: `${siteUrl}/menu`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/recruitment`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
   ];
 }
