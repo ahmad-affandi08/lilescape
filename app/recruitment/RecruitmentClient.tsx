@@ -53,8 +53,9 @@ export default function RecruitmentClient({ lowonganList }: { lowonganList: Lowo
 
             setSubmitSuccess(true);
             (e.target as HTMLFormElement).reset();
-        } catch (error: any) {
-            setErrorMsg(error.message || "Lamaran gagal dikirim.");
+        } catch (error: unknown) {
+            const message = error instanceof Error ? error.message : "Lamaran gagal dikirim.";
+            setErrorMsg(message);
         } finally {
             setSubmitting(false);
         }

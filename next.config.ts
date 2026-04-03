@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // Serve image sources directly to avoid optimizer endpoint failures on server.
-    unoptimized: false,
     // Needed for local development when backend image URLs use 127.0.0.1.
     dangerouslyAllowLocalIP: true,
     remotePatterns: [
