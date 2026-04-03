@@ -1,5 +1,7 @@
 import { buildApiUrl } from "./api";
 
+const shouldLogApiError = process.env.NODE_ENV !== "production";
+
 export interface Lowongan {
     id: number;
     jabatan: string;
@@ -17,14 +19,18 @@ export async function getActiveLowongans(): Promise<Lowongan[]> {
         });
 
         if (!response.ok) {
-            console.error("Failed to fetch lowongan:", response.status);
+            if (shouldLogApiError) {
+                console.error("Failed to fetch lowongan:", response.status);
+            }
             return [];
         }
 
         const json = await response.json();
         return json.data || [];
     } catch (error) {
-        console.error("Error fetching lowongan:", error);
+        if (shouldLogApiError) {
+            console.error("Error fetching lowongan:", error);
+        }
         return [];
     }
 }
