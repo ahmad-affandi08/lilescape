@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const navLinks = [
   { href: "/#beranda", label: "Beranda" },
@@ -41,19 +42,19 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <a
+        <Link
           href="/#beranda"
           className="flex items-center"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={scrolled ? "/assets/logo/logo.png" : "/assets/logo/logo2.png"}
+            src={scrolled ? "/images/logo.png" : "/images/logo2.png"}
             alt="Lil' Escape Logo"
             width={140}
             height={40}
             className="w-auto h-auto max-h-10 object-contain transition-all duration-300"
           />
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">

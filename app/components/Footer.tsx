@@ -15,7 +15,7 @@ export default function Footer() {
             <Link href="/#beranda" className="inline-block mb-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/assets/logo/logo.png"
+                src="/images/logo.png"
                 alt="Lil' Escape Logo"
                 width={196}
                 height={56}
