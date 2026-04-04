@@ -5,7 +5,7 @@ import { getActiveLowongans } from "../lib/recruitment";
 import RecruitmentClient from "./RecruitmentClient";
 
 export const metadata: Metadata = {
-  title: "Recruitment | Karir di Lil' Escape Coffee & Eatery",
+  title: "Recruitment",
   description:
     "Lowongan kerja terbaru di Lil' Escape Coffee & Eatery Sragen. Lihat posisi yang tersedia dan kirim lamaran secara online.",
   alternates: {
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/hero-bg.jpg",
-        width: 1200,
-        height: 630,
+        url: "/assets/logo/logo2.png?v=20260404",
+        width: 26284,
+        height: 4628,
         alt: "Recruitment Lil' Escape Coffee & Eatery",
       },
     ],
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Recruitment | Karir di Lil' Escape Coffee & Eatery",
     description:
       "Lihat lowongan kerja terbaru Lil' Escape Coffee & Eatery di Sragen.",
-    images: ["/images/hero-bg.jpg"],
+    images: ["/assets/logo/logo2.png?v=20260404"],
   },
 };
 
